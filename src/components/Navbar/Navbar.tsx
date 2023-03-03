@@ -1,12 +1,13 @@
 import React from 'react';
+import s from './Navbar.module.css'
 
 export function Navbar(){
     return (
-        <>
-        <ul>
-            <li><a href="/task_map">Метод Map</a></li>
-            <li><a href="/task_123">123</a></li>
+        <div className={s.wrapper}>
+        <ul className={s.nav_list}>
+            <li className={s.nav_item}><a href="/task_map" className={s.link}>Метод Map</a></li>
+            <li className={s.nav_item}><a href="/task_123" className={s.link}>123</a></li>
         </ul>
-        </>
+        </div>
     )
 }
