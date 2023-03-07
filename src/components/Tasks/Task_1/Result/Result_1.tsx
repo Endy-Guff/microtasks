@@ -18,7 +18,7 @@ export function Result_1(props: PropsType){
         <>
             {props.cars.map((item, index) =>{
                 return(
-                    <p>{index + 1}. {item.manufacturer} model:{item.model}</p>
+                    <p key={index}>{index + 1}. {item.manufacturer} model:{item.model}</p>
                 )
             })}
         </>
