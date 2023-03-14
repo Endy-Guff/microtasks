@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
-import { Task_1 } from './components/Tasks/Task_1/Task_1';
-import { Task_2 } from './components/Tasks/Task_2/Task_2';
-import { Navbar } from './components/Navbar/Navbar';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import { Button } from './components/Button';
+import { FullInput } from './components/FullInput';
+import { Input } from './components/Input';
 
 function App() {
+
+  let [messages, setMessages] = useState([
+    {message: 'messsage1'},
+    {message: 'messsage2'},
+    {message: 'messsage3'}
+  ])
+
+  const updateMessages = (value: string) =>{
+    const newMessage = {message: value}
+    setMessages([newMessage, ...messages])
+  }
+
+  let [title, setTitle] = useState('')
+  console.log(title);
+
+  const onClickButtonHandler = () =>{
+    updateMessages(title)
+    setTitle('')
+  }
+  
+
   return (
     <div className="App">
-      <h1 className='app_title'>Microtasks</h1>
-      <div className='app_wrapper'>
-        <Navbar />
-        <div className='app_content'>
-          <BrowserRouter>
-            <Routes>
-              <Route path='/task_1' element={<Task_1 />}/>
-              <Route path='/task_2' element={<Task_2 />}/>
-            </Routes>
-          </BrowserRouter>
-        </div>
-      </div>
+      {/* <FullInput callback={updateMessages} /> */}
+      <Input title={title} setTitle={setTitle}/>
+      <Button name='+' callback={onClickButtonHandler}/>
+      {messages.map((el, index) =>{
+        return <div key={index}>{el.message}</div>
+      })}
     </div>
   );
 }
